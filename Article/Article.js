@@ -14,8 +14,17 @@ class Article {
 
   expandArticle() {
     // Using our reference to the domElement, toggle a class to expand or hide the article.
-    console.log(this.domElement);
-    this.domElement.classList.toggle('article-open');
+      this.domElement.classList.add('article-open');
+      TweenLite.to(this.domElement, 4.5, { ease: SteppedEase.config(12), y: -45, x: 45 });
+      this.expandButton.textContent = 'Mark As Read';
+      document.querySelector('body').style.backgroundColor = 'black';
+      if (this.expandButton.textContent === 'Mark As Read') {
+        this.expandButton.addEventListener('click', () => this.read());
+    }
+  }
+
+  read() {
+    this.domElement.style.display = "none";
   }
 }
 
